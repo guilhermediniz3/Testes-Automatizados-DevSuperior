@@ -28,4 +28,15 @@ public class AccountTests {
 		
 	}
 
+	
+	@Test
+	public void depositoShouldNaoDepositarWhenMontanteNegativo() {
+		double montante = -200.00;
+		double saldoEsperado = 100.00;
+		Account acc = new Account(1L, 100.0);
+		acc.deposito(montante);
+		
+		Assertions.assertEquals(saldoEsperado, acc.getSaldo());
+	}
+  
 }
