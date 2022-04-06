@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import entities.Account;
+import tests.factory.AccountFactory;
 
 public class AccountTests {
 	@Test
@@ -11,7 +12,7 @@ public class AccountTests {
 		// Arrange -> Instancia os objetos necessários
 		double montante = 200.00;
 		double saldoEsperado = 196.00;
-		Account acc = new Account(1L, 0.0);
+		Account acc = AccountFactory.createEmptyAccount();
 		
 		// Act -> executa as ações necessárias
 		
@@ -33,7 +34,7 @@ public class AccountTests {
 	public void depositoShouldNaoDepositarWhenMontanteNegativo() {
 		double montante = -200.00;
 		double saldoEsperado = 100.00;
-		Account acc = new Account(1L, 100.0);
+		Account acc = AccountFactory.createAccount(saldoEsperado);
 		acc.deposito(montante);
 		
 		Assertions.assertEquals(saldoEsperado, acc.getSaldo());
